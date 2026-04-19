@@ -8,7 +8,7 @@ package com.mycompany.smartcampus.model;
  *
  * @author DELL
  */
-public class Sensor {
+public class Sensor implements BaseModel{
     private String id; //unique identifier (ex: "TEMP-001")
     private String type; //category (ex: "Temperature", "Occupancy", "CO2")
     private String status; //current state "ACTIVE" "MAINTENANCE" "OFFLINE" 

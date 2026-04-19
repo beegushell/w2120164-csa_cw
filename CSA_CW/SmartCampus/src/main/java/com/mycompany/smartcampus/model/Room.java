@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author DELL
  */
-public class Room {
+public class Room implements BaseModel{
     private String id; //unique identifier (ex: "LIB-301")
     private String name; //human readable name (ex: "Library Quiet Study")
     private int capacity; //maximum occupancy for safety regulations

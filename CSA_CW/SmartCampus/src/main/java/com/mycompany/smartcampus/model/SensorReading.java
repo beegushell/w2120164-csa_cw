@@ -8,7 +8,7 @@ package com.mycompany.smartcampus.model;
  *
  * @author DELL
  */
-public class SensorReading {
+public class SensorReading implements BaseModel{
     private String id; //unique reading event ID (UUID recommended)
     private long timestamp; //epoch time (ms) when reading was captured
     private double value; //the actual metric value recorded by the hardware
