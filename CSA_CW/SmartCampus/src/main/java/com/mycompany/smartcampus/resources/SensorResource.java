@@ -33,6 +33,7 @@ public class SensorResource {
         if (type == null){
             return allSensors;
         }
+        
         List<Sensor> filtered = new ArrayList<>();
         
         for (Sensor s: allSensors){
@@ -64,7 +65,15 @@ public class SensorResource {
                 .status(Response.Status.CREATED)
                 .entity(sensor)
                 .build();
+    }
+    
+    @Path("/{sensorId}/readings")
+    public SensorReadingResource getSensorReadings(@PathParam("sensorId") String sensorId){
+        Sensor sensor = sensorDAO.getById(sensorId);
         
-        
+        if (sensor == null){
+            throw new NotFoundException("Sensor not found");
+        }
+        return new SensorReadingResource(sensorId);
     }
 }
