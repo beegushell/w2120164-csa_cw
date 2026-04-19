@@ -5,6 +5,7 @@
 package com.mycompany.smartcampus.resources;
 
 import com.mycompany.smartcampus.exception.DataNotFoundException;
+import com.mycompany.smartcampus.exception.RoomNotEmptyException;
 import com.mycompany.smartcampus.dao.GenericDAO;
 import com.mycompany.smartcampus.dao.MockDatabase;
 import com.mycompany.smartcampus.model.Room;
@@ -48,6 +49,9 @@ public class SensorRoom {
         Room existingRoom = roomDAO.getById(roomId);
         if (existingRoom == null) {
             throw new DataNotFoundException("Room with ID " + roomId + " not found.");
+        }
+        if (!existingRoom.getSensorIds().isEmpty()){
+            throw new RoomNotEmptyException("Room is currently occupied by active hardware.");
         }
         roomDAO.delete(roomId);
     }

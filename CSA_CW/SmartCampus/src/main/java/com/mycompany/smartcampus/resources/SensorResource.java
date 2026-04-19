@@ -4,7 +4,8 @@
  */
 package com.mycompany.smartcampus.resources;
 
-import com.mycompany.smartcampus.exception.DataNotFoundException;
+import com.mycompany.smartcampus.exception.LinkedResourceNotFoundException;
+import com.mycompany.smartcampus.exception.SensorUnavailableException;
 import com.mycompany.smartcampus.dao.GenericDAO;
 import com.mycompany.smartcampus.dao.MockDatabase;
 import com.mycompany.smartcampus.model.Sensor;
@@ -53,10 +54,7 @@ public class SensorResource {
         Room room = roomDAO. getById(sensor.getRoomId());
         
         if (room == null){
-            return Response
-                    .status(Response.Status.BAD_REQUEST)
-                    .entity("Room does not exist" + sensor.getRoomId())
-                    .build();
+            throw new LinkedResourceNotFoundException("Room does not exist" + sensor.getRoomId());
         }
         
         sensorDAO.add(sensor);
@@ -74,6 +72,10 @@ public class SensorResource {
         if (sensor == null){
             throw new NotFoundException("Sensor not found");
         }
+        if (sensor.getStatus().equalsIgnoreCase("MAINTENANCE")){
+            throw new SensorUnavailableException("Sensor is under MAINTENANCE. It is physically disconnected and cannot accept new readings.");
+        }
+        
         return new SensorReadingResource(sensorId);
     }
 }
