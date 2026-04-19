@@ -49,7 +49,7 @@ public class SensorRoom {
         if (existingRoom == null) {
             throw new DataNotFoundException("Room with ID " + roomId + " not found.");
         }
-        moduleDAO.delete(moduleId);
+        roomDAO.delete(roomId);
     }
     
 }
