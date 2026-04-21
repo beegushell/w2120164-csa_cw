@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ws.rs.core.Response;
 /**
  *
  * @author DELL
@@ -18,20 +19,20 @@ import java.util.Map;
 public class Discovery {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Object> getApiMetadata(){
+    public Response getApiMetadata(){
     
         Map<String, Object> response = new HashMap<>();
         
         response.put("version", "v1");
-        response.put("contact_info", "Smart Campus");
+        response.put("contact_info", "backendDev@smartcampus.ac.lk");
         
         Map<String, String> resources = new HashMap<>();
         resources.put("rooms", "/api/v1/rooms");
         resources.put("sensors", "/api/v1/sensors");
-        resources.put("readings", "/api/v1/readings");
+        resources.put("readings", "/api/v1/sensors/{sensorId}/readings");
         
         response.put("resources", resources);
         
-        return response;    
+        return Response.ok(response).build();
     }
 }

@@ -47,8 +47,9 @@ public class GenericDAO<T extends BaseModel> {
             }
         }
         
-        String newId = "ID-" + (max + 1); //auto-increment
-        item.setId(newId);
+        //auto-increment
+        //String newId = "ID-" + (max + 1);
+        //item.setId(newId);
         
         items.add(item);
     }

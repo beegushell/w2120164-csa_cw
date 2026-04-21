@@ -21,18 +21,24 @@ public class MockDatabase {
     public static final List<SensorReading> READINGS = new ArrayList<>();
     
     static {
-        // Initialise Teachers
-        ROOMS.add(new Room("LIB-301", "Library Quiet Study", 30));
-        ROOMS.add(new Room("CAF-607", "Cafeteria", 120));
+        // Initialise Rooms
+        List<String> exRoom1 = new ArrayList<>();
+        List<String> exRoom2 = new ArrayList<>();
+        exRoom1.add("TEMP-001");
+        exRoom1.add("CO2-001");
+        exRoom2.add("OCP-001");
+        
+        ROOMS.add(new Room("LIB-301", "Library Quiet Study", 30, exRoom1));
+        ROOMS.add(new Room("CAF-607", "Cafeteria", 120, exRoom2));
 
-        // Initialise Students
+        // Initialise Sensors
         SENSORS.add(new Sensor("TEMP-001", "Temperature", "ACTIVE", 30.2, "LIB-301"));
         SENSORS.add(new Sensor("OCP-001", "Occupancy", "MAINTENANCE", 95.0, "CAF-607"));
-        SENSORS.add(new Sensor("CO2-001", "Temperature", "OFFLINE", 398.7, "LIB-301"));
+        SENSORS.add(new Sensor("CO2-001", "CO2", "OFFLINE", 398.7, "LIB-301"));
 
-        // Initialise Modules
-        READINGS.add(new SensorReading("18ad3220-8cad-45fd-a9a8-9fb35b118d87", 1776570284, 30.2));
-        READINGS.add(new SensorReading("19a787e8-49cb-4be8-878c-202f5eb05a6e", 1776570456, 398.7));
+        // Initialise Readings
+        READINGS.add(new SensorReading("18ad3220-8cad-45fd-a9a8-9fb35b118d87", 1776570284, 30.2, "TEMP-001"));
+        READINGS.add(new SensorReading("19a787e8-49cb-4be8-878c-202f5eb05a6e", 1776570456, 398.7, "CO2-001"));
     }
     
 }

@@ -14,13 +14,14 @@ import javax.ws.rs.ext.Provider;
  *
  * @author DELL
  */
+@Provider
 public class SensorUnavailableExceptionMapper implements ExceptionMapper<SensorUnavailableException>  {
 
     @Override
     public Response toResponse(SensorUnavailableException exception) {
         ErrorMessage errorMessage = new ErrorMessage(
             exception.getMessage(), 
-            422, 
+            403, 
             "https://myuniversity.edu/api/docs/errors"
         );
         

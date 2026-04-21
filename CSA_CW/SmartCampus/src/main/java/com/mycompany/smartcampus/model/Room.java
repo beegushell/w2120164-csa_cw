@@ -18,10 +18,11 @@ public class Room implements BaseModel{
 
     public Room() {}
 
-    public Room(String id, String name, int capacity) {
+    public Room(String id, String name, int capacity, List<String> sensorIds) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
+        this.sensorIds = sensorIds;
     }
     
     public String getId() { return id; }
