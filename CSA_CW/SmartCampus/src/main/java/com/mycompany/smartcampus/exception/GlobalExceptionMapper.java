@@ -20,10 +20,6 @@ public class GlobalExceptionMapper implements ExceptionMapper<Throwable>  {
     @Override
     public Response toResponse(Throwable exception) {
         
-        if (exception instanceof javax.ws.rs.WebApplicationException) {
-            return ((javax.ws.rs.WebApplicationException) exception).getResponse();
-        }
-        
         ErrorMessage errorMessage = new ErrorMessage(
             "An unexpected internal server error occured.", 
             500, 

@@ -54,6 +54,7 @@ public class SensorRoom {
     
     @DELETE
     @Path("/{roomId}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response deleteRoom(@PathParam("roomId") String roomId) {
         Room existingRoom = roomDAO.getById(roomId);
         if (existingRoom == null) {
